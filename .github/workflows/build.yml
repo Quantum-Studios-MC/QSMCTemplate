@@ -13,6 +13,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: fetch mods
+        run: |
+          python update.py
       - name: build
         run: python compile.py
       - name: Archive artifact

@@ -1,0 +1,23 @@
+{
+  "maxReach": 100,
+  "maxBlocksPerOperation": 100000,
+  "defaultPermissions": [
+    "COPIER",
+    "ROTATOR",
+    "MOVER",
+    "ARRAY",
+    "SHAPER",
+    "FILLER",
+    "LAKE",
+    "SELECT",
+    "MIRROR",
+    "NOTES",
+    "BRUSH",
+    "FORESTER",
+    "PEN",
+    "PLACER",
+    "EXTRUDER"
+  ],
+  "admins": [],
+  "playerOverrides": {}
+}

@@ -2,7 +2,15 @@
 /build/
 
 # Minecraft instance data
-/minecraft/
+# we want to ignore the bulk of the launcher-specific files, but
+# still allow mods, config, scripts and groovy sources to be committed.
+/minecraft/*
+!/minecraft/mods/
+/minecraft/mods/*.jar
+/minecraft/mods/**/*.jar
+!/minecraft/config/
+!/minecraft/scripts/
+!/minecraft/groovy/
 
 # Python cache
 __pycache__/
