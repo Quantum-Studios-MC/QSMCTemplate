@@ -187,10 +187,15 @@ def main():
             mods_path.mkdir(parents=True, exist_ok=True)
             for df in downloaded:
                 print(f"Downloading {df.name}...")
-                with urllib.request.urlopen(df.url) as req:
-                    with open(mods_path / df.filename, "wb") as output:
-                        while chunk := req.read(524288):
-                            output.write(chunk)
+                try:
+                    with urllib.request.urlopen(df.url) as req:
+                        with open(mods_path / df.filename, "wb") as output:
+                            while chunk := req.read(524288):
+                                output.write(chunk)
+                except urllib.error.HTTPError as e:
+                    print(f"failed to download {df.name}: HTTP {e.code} {e.reason}")
+                except Exception as e:
+                    print(f"error downloading {df.name}: {e}")
 
     print("All done!")
 
