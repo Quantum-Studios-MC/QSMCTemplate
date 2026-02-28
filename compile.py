@@ -19,7 +19,7 @@ def build_modpack(sources, output_filename):
     seen = set()
     with zipfile.ZipFile(output_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for src, prefix in sources:
-            if os.path.exists(src):
+            if os.path.isdir(src):
                 for root, _, files in os.walk(src):
                     for file in files:
                         file_path = os.path.join(root, file)
@@ -29,6 +29,13 @@ def build_modpack(sources, output_filename):
                             continue
                         seen.add(arcname)
                         zipf.write(file_path, arcname)
+            elif os.path.isfile(src):
+                # single file (e.g. manifest) – use prefix as output name or the
+                # basename if no prefix supplied
+                arcname = prefix or os.path.basename(src)
+                if arcname not in seen:
+                    seen.add(arcname)
+                    zipf.write(src, arcname)
             else:
                 print(f"warning: source path '{src}' does not exist, skipping")
 
@@ -38,6 +45,9 @@ if __name__ == "__main__":
     # if you are running inside a launcher instance, the files will typically
     # live under "minecraft/"; adjust paths accordingly
     sources = [
+        # include the MultiMC/Prism manifest so launchers recognise the pack
+        ("mmc-pack.json", ""),
+
         ("mods", "mods"),
         ("minecraft/mods", "mods"),
         ("minecraft/config", "config"),
