@@ -153,10 +153,15 @@ def main():
         if (mods_path / mn).exists():
             skipped += 1
         else:
-            downloaded.append(
-                DownloadFile(data.get("name", "?"), mn,
-                             str(data["update"]["curseforge"]["file-id"]))
-            )
+            # look for a CurseForge file-id; if it's missing we can't download
+            cf_section = data.get("update", {}).get("curseforge", {})
+            cfid = cf_section.get("file-id")
+            if not cfid:
+                print(f"warning: no curseforge file-id for '{mn}', skipping download")
+            else:
+                downloaded.append(
+                    DownloadFile(data.get("name", "?"), mn, str(cfid))
+                )
 
     # find extraneous jars
     if mods_path.exists():
