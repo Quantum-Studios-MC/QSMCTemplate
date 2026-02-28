@@ -15,6 +15,7 @@ import dataclasses
 import json
 import urllib.request
 import urllib.parse
+import sys
 
 # TOML library: use built-in tomllib on Python>=3.11, otherwise try tomli.
 # Initialize the name to None so we can detect failures.
@@ -130,6 +131,14 @@ def main():
     needed_files = set()
     deleted_files = []
 
+    def confirm(prompt: str) -> bool:
+        """Return True if the user agrees, or auto-yes in non-interactive mode."""
+        if not sys.stdin.isatty():
+            # running in CI/no terminal, assume yes
+            print(prompt + " (auto-confirmed)")
+            return True
+        return input(prompt).lower() != "n"
+
     # read each metadata file and determine which jar we need
     for fn in os.listdir(index_path):
         if not fn.endswith(".toml"):
@@ -165,11 +174,11 @@ def main():
     if skipped:
         print(f"Skipping {skipped} mods as they're already installed.")
     if deleted_files:
-        if input(f"{len(deleted_files)} files need to be deleted. Continue? (Y/n) ").lower() != "n":
+        if confirm(f"{len(deleted_files)} files need to be deleted. Continue? (Y/n) "):
             for f in deleted_files:
                 os.unlink(mods_path / f)
     if downloaded:
-        if input(f"{len(downloaded)} files need to be downloaded. Continue? (Y/n) ").lower() != "n":
+        if confirm(f"{len(downloaded)} files need to be downloaded. Continue? (Y/n) "):
             mods_path.mkdir(parents=True, exist_ok=True)
             for df in downloaded:
                 print(f"Downloading {df.name}...")
