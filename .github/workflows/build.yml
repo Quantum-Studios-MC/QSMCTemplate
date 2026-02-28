@@ -37,5 +37,6 @@ jobs:
         with:
           tag: ${{ github.ref }}
           name: ${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_PAT }}
+          # the action uses the provided token; no need to set GITHUB_TOKEN
+

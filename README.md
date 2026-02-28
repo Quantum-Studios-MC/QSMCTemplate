@@ -75,8 +75,8 @@ ld.yml
 If you want the workflow to create or update GitHub releases, you need a
 personal access token (PAT) with `repo` (or `public_repo`) and
 `repo:releases` scopes.  Add it as a repository secret (e.g. named
-`GH_PAT`).  Then modify the workflow to use the token when invoking a release
-action.  Example snippet:
+`GH_PAT`).  Then modify the workflow to pass that secret directly to the
+release action.  Example snippet:
 
 ```yaml
 - name: Create GitHub release
@@ -84,9 +84,12 @@ action.  Example snippet:
   with:
     tag: ${{ github.ref }}
     name: ${{ github.ref }}
-  env:
-    GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+    token: ${{ secrets.GH_PAT }}   # <--- supply PAT here
 ```
+
+(The action reads the `token` input, not the `GITHUB_TOKEN` environment
+variable; using the default `github.token` or omitting this will often lead
+to a 403.)
 
 This step is optional; you can simply download the ZIP artifact instead of
 using releases.
