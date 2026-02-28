@@ -1,0 +1,75 @@
+hash-format = "sha256"
+
+[[files]]
+file = ".github/workflows/build.yml"
+hash = "9c3e3a3ddb4692c49ae4c39d81ff9f869c3d4758a87f4fff3756340753bf1179"
+
+[[files]]
+file = ".idea/QSMCTemplate.iml"
+hash = "c96ea0b5b29abb7d5807671dd208fd63f63694dd236335d2fe8c074e89e94aa6"
+
+[[files]]
+file = ".idea/misc.xml"
+hash = "ae35239d178094e997ce56325cdbbd72d73b98686859d42326d7a32f3f5a4669"
+
+[[files]]
+file = ".idea/modules.xml"
+hash = "8062155e9d6361df9768a4329552277b61acd005cc9945b10bc282fbd0e04be6"
+
+[[files]]
+file = ".idea/vcs.xml"
+hash = "62be7e0a7f84ab3c35b4d4bafb890a4951d061eadafde1a10aa3f5d0406db5df"
+
+[[files]]
+file = ".idea/workspace.xml"
+hash = "fe02290d08f12fcc4e98646346dd5528d7bb5fd4ab9f4d683cbfb18b81cbf781"
+
+[[files]]
+file = "LICENSE"
+hash = "fecd3b5d0bf459ea27933cd57cf3fa4c975308c8555e7cfbd5196360b83ddfca"
+
+[[files]]
+file = "README.md"
+hash = "7e2183b8b89b0aa96c346f00d6d86aa43448930fac11701e2da5f8a9a8857fa4"
+
+[[files]]
+file = "compile.py"
+hash = "7a65ad1c0ffac93f1c2e3e5749decda972bc593e48fa48051a4f117b4c6ee5fa"
+
+[[files]]
+file = "icon.png"
+hash = "0ec8d034b68ef91c54515abfb74d442805fadcf390add0bf7e458723a2c4bdbd"
+
+[[files]]
+file = "instance.cfg"
+hash = "a7b5f36e3ab0c2f1026baec7e6a29b4e79b275a40d9a991c9b8feb44765a7ce5"
+
+[[files]]
+file = "metadata/index.toml"
+hash = "93a4b25864a7e71c92e02829df5bb02b7296d3a4c057b0cef393906b8965efca"
+
+[[files]]
+file = "metadata/pack.toml"
+hash = "10017c9a71eb5b66cafe0e74d436b0b47765ea4c7f4c4f56860d0fd495e74288"
+
+[[files]]
+file = "mmc-pack.json"
+hash = "2d42353c60959dbd70303802f0e27de31fe2b939d8b4ce0fbba8a0d72a7f800c"
+
+[[files]]
+file = "mods/appleskin.pw.toml"
+hash = "793693a85f3c87d4e899ee0c58deabc53690bf5a70f17343f28fd5063ce8a1e1"
+metafile = true
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "0fbcc8cf03336e6bed425e2115fc4ff1a3a05be5c655228b305e70380eb08b57"
+metafile = true
+
+[[files]]
+file = "packwiz-installer-bootstrap.jar"
+hash = "a8fbb24dc604278e97f4688e82d3d91a318b98efc08d5dbfcbcbcab6443d116c"
+
+[[files]]
+file = "update.py"
+hash = "4887938c508a0e57a1ef61cf8e9e614cce851028c085c3ce32f0a7dbbe4b4715"

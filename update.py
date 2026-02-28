@@ -62,7 +62,7 @@ def confirm(prompt: str) -> bool:
 def main():
     instance = pathlib.Path(__file__).parent
     mods_path = instance / "minecraft" / "mods"
-    index_path = instance / "metadata" / "mods"
+    index_path = instance / "mods"
     import_prism_index(mods_path / ".index", index_path)
     skipped=0; downloaded=[]; needed_files=set(); deleted_files=[]
     for fn in os.listdir(index_path):

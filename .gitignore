@@ -22,3 +22,5 @@ __pycache__/
 
 # packer
 .packignore
+
+/instance.cfg

@@ -1,5 +1,0 @@
-name = "Example Mod"
-filename = "example-mod-1.0.jar"
-
-[update.curseforge]
-file-id = 1234567
