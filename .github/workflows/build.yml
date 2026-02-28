@@ -32,7 +32,9 @@ jobs:
           path: build/modpack-latest.zip
 
       - name: Create GitHub release
-        if: startsWith(github.event_name, 'push') || github.event.action == 'published'
+        # only try if the secret is nonempty; avoid running when you haven't set a PAT
+        if: secrets.GH_PAT != '' && (startsWith(github.event_name, 'push') || github.event.action == 'published')
+        continue-on-error: true   # don't fail entire workflow just because release step 403s
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.ref }}

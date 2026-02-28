@@ -91,6 +91,12 @@ release action.  Example snippet:
 variable; using the default `github.token` or omitting this will often lead
 to a 403.)
 
+> **Tip:** the step in the provided workflow already checks that `GH_PAT`
+> is non‑empty and is allowed to fail silently (`continue-on-error`).
+> That way a missing or invalid token won't make the whole build report a
+> failure – you'll still get the ZIP artifact and can fix the token later.
+> A 403 error means the token either isn't set or lacks the proper scopes.
+
 This step is optional; you can simply download the ZIP artifact instead of
 using releases.
 
