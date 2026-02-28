@@ -51,12 +51,14 @@ build the pack for you automatically on GitHub.
 
    ```powershell
    py update.py      # optional, downloads jars
-   py compile.py     # creates build/modpack-latest.zip (contains mmc-pack.json manifest)
+   py compile.py     # creates build/modpack-latest.zip (contains manifests)
    ```
 
-   Inspect the ZIP to ensure it contains a `mmc-pack.json` file and the
-   `mods`, `config`, etc. subfolders.  Launchers such as Prism or MultiMC
-   require the manifest in order to recognise the archive as a valid pack.
+   The builder will automatically generate both an `mmc-pack.json` and a
+   minimal `instance.cfg` (if you don't already have one) so that Prism,
+   MultiMC and other launchers can recognise the archive.  Inspect the ZIP to
+   ensure those files appear at the top level along with the `mods`,
+   `config`, etc. subfolders.
 
 4. **Commit & push**
 

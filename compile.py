@@ -44,9 +44,34 @@ if __name__ == "__main__":
     # directories relative to the repository root
     # if you are running inside a launcher instance, the files will typically
     # live under "minecraft/"; adjust paths accordingly
+
+    # ensure we have a simple instance.cfg as some launchers (Prism) look for
+    # it rather than mmc-pack.json.  If the user has provided one already it
+    # will be left unchanged; otherwise build one from the minecraft version
+    # contained in mmc-pack.json (if present).
+    if not os.path.exists("instance.cfg"):
+        mc_version = None
+        try:
+            import json
+            with open("mmc-pack.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            for comp in data.get("components", []):
+                if comp.get("uid") == "net.minecraft":
+                    mc_version = comp.get("version")
+                    break
+        except Exception:
+            pass
+        with open("instance.cfg", "w", encoding="utf-8") as f:
+            f.write("[Instance]\n")
+            f.write("name=Modpack\n")
+            if mc_version:
+                f.write(f"mcVersion={mc_version}\n")
+
     sources = [
         # include the MultiMC/Prism manifest so launchers recognise the pack
         ("mmc-pack.json", ""),
+        # include instance.cfg for compatibility with launchers that expect it
+        ("instance.cfg", ""),
 
         ("mods", "mods"),
         ("minecraft/mods", "mods"),
