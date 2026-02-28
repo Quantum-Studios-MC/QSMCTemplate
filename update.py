@@ -17,19 +17,19 @@ import urllib.request
 import urllib.parse
 
 # TOML library: use built-in tomllib on Python>=3.11, otherwise try tomli.
-# If neither is available in the environment (CI runner may be minimal),
-# install tomli on the fly.
+# The import is aliased to tomllib explicitly so the name exists in all cases.
+# If neither library is installed, attempt to install tomli and re-import it.
 try:
-    import tomllib
+    import tomllib as tomllib
 except ImportError:
     try:
-        import tomli as tomllib
+        import tomli as tomllib  # type: ignore[no-redef]
     except ImportError:
         # install tomli and retry
         import subprocess, sys
         print("tomllib/tomli not found; installing tomli...")
         subprocess.check_call([sys.executable, "-m", "pip", "install", "tomli"])
-        import tomli as tomllib
+        import tomli as tomllib  # type: ignore[no-redef]
 
 
 @dataclasses.dataclass
@@ -69,6 +69,7 @@ def import_prism_index(index_file: pathlib.Path, index_path: pathlib.Path):
         return
 
     # if index_file is a directory, treat its children as already-correct TOML
+    # (this must happen before any file I/O to avoid [Errno 21] complaints)
     if index_file.is_dir():
         for child in index_file.iterdir():
             if child.suffix.lower() != ".toml":
