@@ -78,11 +78,15 @@ if __name__ == "__main__":
         # include instance.cfg for compatibility with launchers that expect it
         (inst_cfg, ""),
 
-        (rel("mods"), "mods"),
-        (rel("minecraft/mods"), "mods"),
-        (rel("minecraft/config"), "config"),
-        (rel("minecraft/scripts"), "scripts"),
-        (rel("minecraft/groovy"), "groovy"),
+        # everything below gets placed inside the minecraft/ folder so that an
+        # imported pack produces the same layout as a real Prism/MultiMC
+        # instance.  `rel("mods")` is there to support users who keep a
+        # standalone mods/ directory next to the instance rather than inside it.
+        (rel("mods"), "minecraft/mods"),
+        (rel("minecraft/mods"), "minecraft/mods"),
+        (rel("minecraft/config"), "minecraft/config"),
+        (rel("minecraft/scripts"), "minecraft/scripts"),
+        (rel("minecraft/groovy"), "minecraft/groovy"),
     ]
 
     output_zip = rel("build/modpack-latest.zip")

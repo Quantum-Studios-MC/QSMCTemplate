@@ -62,9 +62,22 @@ build the pack for you automatically on GitHub.
    layout.
    The builder will automatically generate both an `mmc-pack.json` and a
    minimal `instance.cfg` (if you don't already have one) so that Prism,
-   MultiMC and other launchers can recognise the archive.  Inspect the ZIP to
-   ensure those files appear at the top level along with the `mods`,
-   `config`, etc. subfolders.
+   MultiMC and other launchers can recognise the archive.  The pack now leaves
+   *everything except those manifests* under a `minecraft/` prefix, mirroring
+   the structure of a normal Prism instance.  That ensures that when you
+   import the ZIP the `mods` and `config` folders end up inside the
+   `minecraft` directory rather than sitting beside it.
+
+   Inspect the ZIP to make sure it contains `mmc-pack.json` and `instance.cfg`
+   at the root and that the remainder of the contents are in `minecraft/` –
+   e.g.: 
+
+   ```
+   mmc-pack.json
+   instance.cfg
+   minecraft/mods/…
+   minecraft/config/…
+   ```
 
 4. **Commit & push**
 
