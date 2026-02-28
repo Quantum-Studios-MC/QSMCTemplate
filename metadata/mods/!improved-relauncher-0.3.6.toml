@@ -1,2 +1,6 @@
 name = "!improved-relauncher-0.3.6"
 filename = "!improved-relauncher-0.3.6.jar"
+
+[update.curseforge]
+file-id = 7127770
+project-id = 1336201
