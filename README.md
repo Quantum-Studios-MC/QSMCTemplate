@@ -71,11 +71,21 @@ ld.yml
 
    The workflow triggers on every `push` to `main` and can also be run
    manually.  It runs `update.py` followed by `compile.py`, then uploads the
-   resulting ZIP as an artifact.  Download it from the Actions run under
-   **Artifacts → modpack** – note that GitHub packages artifacts in a
-   container ZIP, so you'll need to extract the inner `modpack-latest.zip`
-   before importing into your launcher.  Alternatively, pull the pack from the
-   GitHub release (the workflow copies the ZIP there as well).
+   resulting ZIP as an artifact.  
+
+   **Important:** GitHub's artifact service always bundles whatever you upload
+   into a second ZIP file before you download it.  That means when you click
+   **Artifacts → modpack** you receive a container archive that itself
+   contains `modpack-latest.zip`.  You must unzip twice (or extract the
+   inner file) before handing the result to your launcher.  This double‑zipping
+   is a platform limitation and cannot be avoided.  That is why we also copy
+   the ZIP to the GitHub release in the next step – release assets are served
+   directly and are ready to import without any extra extraction.
+
+   To avoid confusion, it’s usually easiest to download the pack from the
+   **GitHub release** associated with the most recent tag; the workflow
+   attaches `build/modpack-latest.zip` as an asset, and that file is
+   importable straight away.
 ```bash
 git tag v1.2.3
 git push origin v1.2.3
