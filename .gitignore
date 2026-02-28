@@ -1,0 +1,16 @@
+# Ignore build outputs
+/build/
+
+# Minecraft instance data
+/minecraft/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local IDE/workspace files
+.vscode/
+*.log
+
+# packer
+.packignore

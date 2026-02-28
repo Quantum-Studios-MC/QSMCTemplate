@@ -1,0 +1,26 @@
+name: Build modpack
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: build
+        run: python compile.py
+      - name: Archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: modpack
+          path: build/modpack-latest.zip
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/modpack-latest.zip

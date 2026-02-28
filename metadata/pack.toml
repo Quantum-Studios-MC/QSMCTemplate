@@ -1,0 +1,5 @@
+name = "QSMCTemplate"
+version = "1.0.0"
+author = "<your name>"
+description = "Template modpack, structure based on Dimension-Gateway."
+pack_format = 3
